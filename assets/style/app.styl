@@ -1,0 +1,35 @@
+// Vendor
+@import 'kouto-swiss'
+@import 'rupture'
+
+
+// Configuração básica da arquitetura. Variáveis globais que definem cores, espaçamentos, etc.
+// Nada aqui será gerado como css final, sendo somente utilizado na criação.
+@import '1.settings/*.styl'
+
+
+// Mixins e funções para os layouts, pode ser qualquer coisa, desde mixins de font-face até mixins de animações, etc.
+// Ainda nessa área nada é gerado como css final
+// @import '2.tools/*styl'
+
+
+// Primeira camada que vai aplicar definitivamente CSS e é destinada para as propriedades
+// mais genéricas e com menor especificidade possível (resets, box-sizing, etc).
+@import '3.generic/*.styl'
+
+
+// Estilizações básicas, última camada com seletores em tags diretamente (h1-h6, blockquotes, a, buttons, etc)
+@import '4.base/*.styl'
+
+
+// Pequenos objetos seguindo os princípios de OOCSS,
+// aqui deve-se estilizar pequenos padrões de interface que se repetem em todo o site
+// a partir desse momento só é permitido o uso de classes
+@import '5.objects/*.styl'
+
+
+// Trumps, também podem ser chamados de helpers
+// Camada com maior especificidade de todas, podendo utilizar inclusive !importante em seus componentes (com cautela, lembre-se do que o Tio Ben disse ao Peter).
+//@import '6.trumps/*.styl'
+
+@import '7.vendor/*.styl'
