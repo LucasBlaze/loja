@@ -27,7 +27,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://github.com/nuxt-community/svg-module
-    "@nuxtjs/svg"
+    "@nuxtjs/svg",
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
