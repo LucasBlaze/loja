@@ -12,25 +12,37 @@
 </template>
 
 <script>
-import {  mapGetters } from 'vuex'
+import {  mapActions } from 'vuex';
 export default {
   layout: 'clean',
+
   computed: {
     cart() {
       return this.$store.state.cart
     },
   },
+
   async created() {
-    await this.$store.dispatch('cart/getCart', 1);
-    this.getProductsIds();
+    await this.getCart(1);
+    this.setProductsIds();
   },
+
   methods: {
-    getProductsIds() {
+    setProductsIds() {
       let arrIds = [];
       this.cart.list.products.forEach((el) => arrIds.push(el.productId));
-      this.$store.dispatch('products/getProductsById', arrIds);
-
+      this.setProductsById(arrIds);
     },
+    ...mapActions(
+       'cart', {
+          getCart : 'getCart',
+       }
+    ),
+    ...mapActions(
+       'products', {
+         setProductsById: 'setProductsById',
+       }
+    ),
 
   }
 }

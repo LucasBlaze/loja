@@ -1,24 +1,71 @@
 <template>
   <header class="c-header">
     <div class="o-wrapper">
+
       <div class="c-header__col">
         <h1 class="c-header__name">Hi, Dwight</h1>
-        <a href="javascript:;" class="c-header__address">1725 Slough Avenue</a>
+        <a
+        href="javascript:;"
+        class="c-header__address">
+        1725 Slough Avenue
+        </a>
+
       </div>
+
       <div class="c-header__col">
-        <NuxtLink to="/carrinho" class="c-header__cart-link" title="Carrinho de Compras">
-          <span class="c-header__cart-notify">3</span>
+
+        <NuxtLink
+        to="/carrinho"
+        class="c-header__cart-link"
+        title="Carrinho de Compras">
+
+          <span
+          class="c-header__cart-notify"
+          v-if="getNumItensCart > 0">
+          {{ getNumItensCart }}
+          </span>
+
           <img src="~assets/img/icons/cart.svg" alt="Carrinho de compras" class="c-header__cart-img">
+
         </NuxtLink>
+
       </div>
       <div class="c-header__col">
-        <a href="javascript:;" class="c-header__profile-link" title="Perfil">
+        <a
+        href="javascript:;"
+        class="c-header__profile-link"
+        title="Perfil">
+
           <img src="~assets/img/icons/profile.svg" alt="Perfil" class="c-header__profile-img">
         </a>
+
       </div>
     </div>
   </header>
 </template>
+
+<script>
+import {
+  mapGetters,
+  mapActions
+  } from 'vuex';
+
+export default {
+  async created() {
+    await this.$store.dispatch('cart/getCart', 1);
+  },
+  computed: {
+    ...mapGetters({
+      getNumItensCart: 'cart/getNumItensCart'
+    }),
+    ...mapActions(
+      'cart', {
+        getCart : 'getCart',
+      }
+    ),
+  }
+}
+</script>
 
 
 <style lang="stylus">

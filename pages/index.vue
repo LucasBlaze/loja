@@ -1,32 +1,47 @@
 <template>
   <div>
     <Search />
-    <Productshighlight />
+    <ProductsHighlight />
 
     <div class="o-wrapper">
-      <Filterproducts @open-categories="showCategories = true" />
-      <Listproducts />
+      <FilterProducts @open-categories="showCategories = true" />
+      <ListProducts />
     </div>
 
-    <Listcategories v-if="showCategories" @close-categories="showCategories = false" />
-    <!-- <Qtdproducts/> -->
+    <ListCategories
+      v-if="showCategories"
+      @close-categories="showCategories = false"
+    />
+    <!-- <QtdProducts/> -->
   </div>
 </template>
 
 <script>
-
+import { mapActions } from "vuex";
 export default {
   layout: 'default',
+
   data() {
     return {
       showCategories: false
     }
   },
+
   created() {
-    this.$store.dispatch('products/getProducts');
-    this.$store.dispatch('products/getHighlights');
-    this.$store.dispatch('products/getCategories');
+    this.getProducts();
+    this.getHighlights();
+    this.getHighlights();
   },
+
+  methods: {
+    ...mapActions(
+       'products', {
+          getProducts : 'getProducts',
+          getHighlights: 'getHighlights',
+          getCategories: 'getCategories'
+       }
+    ),
+  }
 }
 </script>
 
