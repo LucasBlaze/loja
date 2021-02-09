@@ -16,7 +16,7 @@
 export default {
   computed: {
     products() {
-      return this.$store.state.products.listFilteredProducts
+      return this.$store.state.products.listFiltered
     }
   },
 }

@@ -6,10 +6,10 @@
         <a href="javascript:;" class="c-header__address">1725 Slough Avenue</a>
       </div>
       <div class="c-header__col">
-        <a href="javascript:;" class="c-header__cart-link" title="Carrinho de Compras">
+        <NuxtLink to="/carrinho" class="c-header__cart-link" title="Carrinho de Compras">
           <span class="c-header__cart-notify">3</span>
           <img src="~assets/img/icons/cart.svg" alt="Carrinho de compras" class="c-header__cart-img">
-        </a>
+        </NuxtLink>
       </div>
       <div class="c-header__col">
         <a href="javascript:;" class="c-header__profile-link" title="Perfil">

@@ -23,26 +23,33 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
-  props: ['categories'],
   computed: {
     products() {
-      return this.$store.state.products.listProducts
+      return this.$store.state.products.list
     },
     filter() {
       return this.$store.state.products.filter
+    },
+    categories() {
+      return this.$store.state.products.listCategories
     }
+  },
+  created() {
+    this.$store.dispatch('products/getCategories');
   },
   methods:{
     handleFilter(e){
-      this.setStore(e.target.title);
-    },
-
-    setStore(category) {
-      this.$store.commit('products/setFilterCategory', category);
-      this.$store.commit('products/setFilteredProducts', this.$filterProducts(this.filter, this.products));
+      this.setFilterCategory(e.target.title);
+      this.setFilteredProducts(this.$filterProducts(this.filter, this.products));
       this.$emit('close-categories');
     },
+    ...mapMutations({
+      setFilterCategory: 'products/setFilterCategory',
+      setFilteredProducts: 'products/setFilteredProducts'
+    })
   }
 }
 </script>

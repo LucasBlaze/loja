@@ -20,7 +20,6 @@ import VueSlickCarousel from 'vue-slick-carousel';
 
 export default {
   components: { VueSlickCarousel },
-  props: ['products'],
 
   data() {
     return {
@@ -38,6 +37,11 @@ export default {
             }
         }]
       }
+    }
+  },
+  computed: {
+    products() {
+      return this.$store.state.products.listHighlight
     }
   },
 }

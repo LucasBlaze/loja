@@ -9,10 +9,12 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+
 export default {
   computed: {
     products() {
-      return this.$store.state.products.listProducts
+      return this.$store.state.products.list
     },
     filter() {
       return this.$store.state.products.filter
@@ -22,11 +24,14 @@ export default {
     handleSearch(e){
       this.$debounce(this.setStore(e.target.value), 500);
     },
-
     setStore(word) {
-      this.$store.commit('products/setFilterSearch', word);
-      this.$store.commit('products/setFilteredProducts', this.$filterProducts(this.filter, this.products));
+      this.setFilterSearch(word);
+      this.setFilteredProducts(this.$filterProducts(this.filter, this.products));
     },
+    ...mapMutations({
+      setFilterSearch: 'products/setFilterSearch',
+      setFilteredProducts: 'products/setFilteredProducts'
+    })
   }
 }
 </script>

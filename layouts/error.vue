@@ -3,7 +3,7 @@
 
     <div class="o-wrapper o-wrapper--404">
 
-      <Arrowback text="Voltar para Home" link="/" />
+      <ArrowBack text="Voltar para Home" link="/" />
 
       <div class="o-title-container">
         <h1 v-if="error.statusCode === 404" class="o-ttl">OPS...</h1>
@@ -20,6 +20,7 @@
 
 <script>
 export default {
+  name: 'error',
   layout: 'error',
   props: ['error']
 }

@@ -1,12 +1,9 @@
 export default ({ app }, inject) => {
-
   // Convert price to Brazilian Real
   const convertPrice = (price) => {
     price = price.toString();
     let idx = price.lastIndexOf('.');
-
     price = idx > -1 ? `$ ${price.replace('.', ',').substr(0, idx+1)}<span>${price.substr(idx+1)}</span>` : `$ ${price},<span>00</span>` ;
-
     return price;
   }
 
@@ -40,11 +37,8 @@ export default ({ app }, inject) => {
       }
       filteredList = searchList
     }
-
     return filteredList
   }
-
-
 
   inject('convertPrice', convertPrice);
   inject('debounce', debounce);
